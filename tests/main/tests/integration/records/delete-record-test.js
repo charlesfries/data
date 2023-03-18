@@ -377,7 +377,7 @@ module('integration/deletedRecord - Deleting Records', function (hooks) {
       'The cache is destroyed'
     );
 
-    record.unloadRecord();
+    await record.unloadRecord();
     await settled();
   });
 

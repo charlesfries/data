@@ -476,7 +476,7 @@ module('Integration | Identifiers - configuration', function (hooks) {
     forgetMethodCalls = 0;
     expectedIdentifier = userIdentifier;
 
-    user.unloadRecord();
+    await user.unloadRecord();
     await settled();
 
     assert.strictEqual(forgetMethodCalls, 1, 'We called the forget method');
@@ -536,7 +536,7 @@ module('Integration | Identifiers - configuration', function (hooks) {
     const freeWillieIdentifier = recordIdentifierFor(freeWillie);
     expectedIdentifiers.push(freeWillieIdentifier);
 
-    freeWillie.unloadRecord();
+    await freeWillie.unloadRecord();
     await settled();
 
     assert.strictEqual(forgetMethodCalls, 1, 'We called the forget method once');
@@ -595,21 +595,21 @@ module('Integration | Identifiers - configuration', function (hooks) {
     const gatekeeperIdentifier = recordIdentifierFor(gatekeeper);
     const jailhouseIdentifier = recordIdentifierFor(jailhouse);
 
-    jailBird.unloadRecord();
+    await jailBird.unloadRecord();
     await settled();
 
     assert.strictEqual(forgetMethodCalls, 0, 'We have not yet called the forget method');
     forgetMethodCalls = 0;
     expectedIdentifiers.push(gatekeeperIdentifier, jailBirdIdentifier);
 
-    gatekeeper.unloadRecord();
+    await gatekeeper.unloadRecord();
     await settled();
 
     assert.strictEqual(forgetMethodCalls, 2, 'We cleaned up both identifiers');
     forgetMethodCalls = 0;
     expectedIdentifiers.push(jailhouseIdentifier);
 
-    jailhouse.unloadRecord();
+    await jailhouse.unloadRecord();
     await settled();
 
     assert.strictEqual(forgetMethodCalls, 1, 'We clean up records with sync relationships');

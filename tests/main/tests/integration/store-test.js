@@ -76,8 +76,8 @@ module('integration/store - destroy', function (hooks) {
 
     let TestAdapter = Adapter.extend({
       findRecord(store, type, id, snapshot) {
-        return new Promise((resolve, reject) => {
-          store.unloadAll(type.modelName);
+        return new Promise(async (resolve, reject) => {
+          await store.unloadAll(type.modelName);
           resolve({
             data: {
               type: 'car',
@@ -109,8 +109,8 @@ module('integration/store - destroy', function (hooks) {
 
     let TestAdapter = Adapter.extend({
       findRecord(store, type, id, snapshot) {
-        return new Promise((resolve, reject) => {
-          store.unloadAll(type.modelName);
+        return new Promise(async (resolve, reject) => {
+          await store.unloadAll(type.modelName);
           reject(new Error('Record Was Not Found'));
         });
       },

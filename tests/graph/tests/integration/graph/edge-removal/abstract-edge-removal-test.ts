@@ -145,7 +145,7 @@ module('Integration | Graph | Edge Removal', function (hooks) {
         const { john } = testState;
 
         // now we unload
-        john.unloadRecord();
+        await john.unloadRecord();
 
         // just in case there is a backburner flush
         await settled();
@@ -248,7 +248,7 @@ module('Integration | Graph | Edge Removal', function (hooks) {
         // now we delete
         john.deleteRecord();
         await john.save();
-        john.unloadRecord();
+        await john.unloadRecord();
 
         await settled();
 

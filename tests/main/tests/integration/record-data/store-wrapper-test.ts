@@ -388,7 +388,7 @@ module('integration/store-wrapper - RecordData StoreWrapper tests', function (ho
 
     // TODO isRecordInUse returns true if record has never been instantiated, think through whether thats correct
     let house2 = store.peekRecord('house', '2') as DSModel;
-    house2.unloadRecord();
+    await house2.unloadRecord();
 
     store.createRecord('house', {});
     const id1 = storeWrapper.identifierCache.getOrCreateRecordIdentifier({ type: 'house', id: '1' });

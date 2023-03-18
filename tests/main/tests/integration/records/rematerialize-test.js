@@ -224,7 +224,7 @@ module('integration/unload - Rematerializing Unloaded Records', function (hooks)
     let boats = await adam.boats;
     assert.strictEqual(boats.length, 2, 'Before unloading boats.length is correct');
 
-    boaty.unloadRecord();
+    await boaty.unloadRecord();
     assert.strictEqual(boats.length, 1, 'after unloading boats.length is correct');
 
     // assert our new cache state

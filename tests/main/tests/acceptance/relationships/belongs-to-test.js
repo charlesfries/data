@@ -608,7 +608,7 @@ module('async belongs-to rendering tests', function (hooks) {
       'New Person',
       'after resetting to a new record, shows new content on page'
     );
-    newParent.unloadRecord();
+    await newParent.unloadRecord();
     await settled();
     assert.strictEqual(this.element.textContent.trim(), '', 'after unloading the record it shows no content on page');
     try {

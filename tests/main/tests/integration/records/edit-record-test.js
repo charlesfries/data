@@ -182,7 +182,7 @@ module('Editing a Record', function (hooks) {
     pets = chris.pets.map((pet) => pet.name);
     assert.deepEqual(pets, [], 'Precondition: Chris has no pets');
 
-    rocky.unloadRecord();
+    await rocky.unloadRecord();
 
     assert.strictEqual(shen.owner, john, 'John is still the owner of Shen');
 
@@ -405,7 +405,7 @@ module('Editing a Record', function (hooks) {
         pets = john.pets.slice().map((pet) => pet.name);
         assert.deepEqual(pets, ['Shen'], 'After Update: John has Shen as a pet');
 
-        chris.unloadRecord();
+        await chris.unloadRecord();
 
         assert.strictEqual(rocky.owner, null, 'After Unload: Rocky has no owner');
         assert.strictEqual(shen.owner, john, 'After Unload: John should still be the owner of Shen');

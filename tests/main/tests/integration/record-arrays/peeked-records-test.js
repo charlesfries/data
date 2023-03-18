@@ -147,7 +147,7 @@ module('integration/peeked-records', function (hooks) {
     assert.strictEqual(records.length, 1);
     assert.watchedPropertyCounts(watcher, { length: 2, '[]': 2 }, 'RecordArray state when a new record is created');
 
-    aNewlyCreatedRecord.unloadRecord();
+    await aNewlyCreatedRecord.unloadRecord();
     records = store.peekAll('person');
     assert.strictEqual(records.length, 0);
 
@@ -229,7 +229,7 @@ module('integration/peeked-records', function (hooks) {
       'RecordArray state after a single push with multiple records to add'
     );
 
-    store.unloadAll('person');
+    await store.unloadAll('person');
 
     assert.watchedPropertyCounts(
       watcher,
