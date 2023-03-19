@@ -182,7 +182,7 @@ if (has('@ember-data/debug')) {
       // reset
       addedRecords = updatedRecords = [];
 
-      post.unloadRecord();
+      await post.unloadRecord();
 
       await settled();
 

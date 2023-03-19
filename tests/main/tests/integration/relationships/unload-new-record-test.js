@@ -151,7 +151,7 @@ module('Relationships | unloading new records', function (hooks) {
       'Precond: Root Node has the correct children'
     );
 
-    newNode.unloadRecord();
+    await newNode.unloadRecord();
     await settled();
 
     assert.strictEqual(entryNode.parent, null, 'Our relationship state is now null');
@@ -179,7 +179,7 @@ module('Relationships | unloading new records', function (hooks) {
       'Precond: EntryNode has the correct children'
     );
 
-    newNode.unloadRecord();
+    await newNode.unloadRecord();
     await settled();
 
     assert.deepEqual(
@@ -214,7 +214,7 @@ module('Relationships | unloading new records', function (hooks) {
       'Precond: Original Related Node has the correct asyncEdges'
     );
 
-    newNode.unloadRecord();
+    await newNode.unloadRecord();
     await settled();
 
     value = await entryNode.relatedGraph;
@@ -243,7 +243,7 @@ module('Relationships | unloading new records', function (hooks) {
       'Precond: entryNode has the correct asyncEdges'
     );
 
-    newNode.unloadRecord();
+    await newNode.unloadRecord();
     await settled();
 
     asyncEdges = await entryNode.asyncEdges;

@@ -756,12 +756,13 @@ class Model extends EmberObject {
 
     @method unloadRecord
     @public
+    @return {Promise} promise
   */
   unloadRecord() {
     if (this.currentState.isNew && (this.isDestroyed || this.isDestroying)) {
       return;
     }
-    storeFor(this).unloadRecord(this);
+    return storeFor(this).unloadRecord(this);
   }
 
   /**

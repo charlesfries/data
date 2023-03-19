@@ -227,7 +227,7 @@ module('unit/model - Model', function (hooks) {
         });
       }, /You may not set 'id' as an attribute on your model/);
 
-      store.unloadAll();
+      await store.unloadAll();
       _clearCaches();
     });
 
@@ -637,7 +637,7 @@ module('unit/model - Model', function (hooks) {
           'We throw for legacy-style classes'
         );
 
-        store.unloadAll();
+        await store.unloadAll();
         _clearCaches();
       });
     }

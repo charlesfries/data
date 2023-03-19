@@ -21,7 +21,7 @@ export interface DSModel extends EmberObject {
   [key: string]: unknown;
   isDeleted: boolean;
   deleteRecord(): void;
-  unloadRecord(): void;
+  unloadRecord(): Promise<void>;
   _notifyProperties(keys: string[]): void;
 }
 

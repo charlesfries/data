@@ -457,7 +457,7 @@ module('integration/record-data - Custom RecordData Implementations', function (
     person.rollbackAttributes();
     assert.strictEqual(calledRollbackAttributes, 1, 'Called rollbackAttributes');
 
-    person.unloadRecord();
+    await person.unloadRecord();
     assert.strictEqual(calledUnloadRecord, 1, 'Called unloadRecord');
 
     await settled();
@@ -487,7 +487,7 @@ module('integration/record-data - Custom RecordData Implementations', function (
     assert.strictEqual(calledWasRejected, 1, 'Called commitWasRejected');
     assert.strictEqual(calledDidCommit, 1, 'Did not call didCommit again');
 
-    clientPerson.unloadRecord();
+    await clientPerson.unloadRecord();
     assert.strictEqual(calledUnloadRecord, 1, 'Called unloadRecord');
 
     await settled();

@@ -260,7 +260,7 @@ module('integration/records/save - Save Record', function (hooks) {
       };
     };
 
-    store.unloadAll('post');
+    await store.unloadAll('post');
     await settled();
 
     await assert.expectAssertion(
@@ -285,7 +285,7 @@ module('integration/records/save - Save Record', function (hooks) {
       };
     };
 
-    post.unloadRecord();
+    await post.unloadRecord();
     await settled();
 
     await assert.expectAssertion(

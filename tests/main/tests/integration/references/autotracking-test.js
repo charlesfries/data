@@ -197,7 +197,7 @@ module('integration/references/autotracking', function (hooks) {
   });
 
   test('HasManyReference.value() is autotracked', async function (assert) {
-    store.unloadAll();
+    await store.unloadAll();
     await settled();
     user = store.push({
       data: {

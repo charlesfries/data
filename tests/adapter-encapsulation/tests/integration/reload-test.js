@@ -266,7 +266,7 @@ module('integration/reload - Reloading Tests', function (hooks) {
 
       let record = this.store.push(payload);
 
-      this.store.unloadRecord(record);
+      await this.store.unloadRecord(record);
 
       await this.store.findRecord('person', '1');
 
@@ -444,7 +444,7 @@ module('integration/reload - Reloading Tests', function (hooks) {
 
       let record = this.store.push(payload);
 
-      this.store.unloadRecord(record);
+      await this.store.unloadRecord(record);
 
       await this.store.findRecord('person', '1');
 

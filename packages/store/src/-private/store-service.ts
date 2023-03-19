@@ -754,14 +754,15 @@ class Store {
     @public
     @param {Model} record
   */
-  unloadRecord(record: RecordInstance): void {
+  unloadRecord(record: RecordInstance): Promise<void> {
     if (DEBUG) {
       assertDestroyingStore(this, 'unloadRecord');
     }
     const identifier = peekRecordIdentifier(record);
     if (identifier) {
-      this._instanceCache.unloadRecord(identifier);
+      return resolve(this._instanceCache.unloadRecord(identifier));
     }
+    return resolve();
   }
 
   /**
@@ -1929,15 +1930,16 @@ class Store {
     Optionally you can pass a type which unload all records for a given type.
 
     ```javascript
-    store.unloadAll();
-    store.unloadAll('post');
+    store.unloadAll().then(() => {});
+    store.unloadAll('post').then(() => {});
     ```
 
     @method unloadAll
     @public
     @param {String} modelName
+    @return {Promise} promise
   */
-  unloadAll(modelName?: string) {
+  unloadAll(modelName?: string): Promise<void> {
     if (DEBUG) {
       assertDestroyedStoreOnly(this, 'unloadAll');
     }

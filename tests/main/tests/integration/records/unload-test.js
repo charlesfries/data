@@ -177,7 +177,7 @@ module('integration/unload - Unloading Records', function (hooks) {
     const people = store.peekAll('person');
     assert.strictEqual(people.length, 1, 'one person record loaded in our live array');
 
-    adam.unloadRecord();
+    await adam.unloadRecord();
     await settled();
 
     assert.strictEqual(people.length, 0, 'no person records in our live array');
@@ -667,7 +667,7 @@ module('integration/unload - Unloading Records', function (hooks) {
 
     // we test that we can sync call unloadRecord followed by findRecord
     const identifier = recordIdentifierFor(record);
-    store.unloadRecord(record);
+    await store.unloadRecord(record);
     const promise = store.findRecord('person', '1');
     assert.true(record.isDestroying, 'the record is destroying');
 
@@ -746,7 +746,7 @@ module('integration/unload - Unloading Records', function (hooks) {
 
     // we test that we can sync call unloadRecord followed by findRecord
     assert.strictEqual(record.cars.at(0).make, 'jeep');
-    store.unloadRecord(record);
+    await store.unloadRecord(record);
     assert.true(record.isDestroying, 'the record is destroying');
     assert.true(cache.isEmpty(identifier), 'Expected the previous data to be unloaded');
 
@@ -1614,7 +1614,7 @@ module('integration/unload - Unloading Records', function (hooks) {
       'many array is initially set up correctly'
     );
 
-    boat2.unloadRecord();
+    await boat2.unloadRecord();
 
     assert.deepEqual(
       boats.map((r) => r.id),
@@ -1622,7 +1622,7 @@ module('integration/unload - Unloading Records', function (hooks) {
       'unload async removes from previous many array'
     );
 
-    boat3.unloadRecord();
+    await boat3.unloadRecord();
 
     assert.deepEqual(
       boats.map((r) => r.id),
@@ -1640,7 +1640,7 @@ module('integration/unload - Unloading Records', function (hooks) {
 
     assert.strictEqual(boat3.belongsTo('person').id(), '1', 'unload async is not treated as delete');
 
-    boat3.unloadRecord();
+    await boat3.unloadRecord();
 
     const refetchedBoats = await person.boats;
 
@@ -1732,7 +1732,7 @@ module('integration/unload - Unloading Records', function (hooks) {
     assert.deepEqual(person3.hasMany('friends').ids(), ['1', '2'], 'initially relationship established rhs');
     assert.deepEqual(person4.hasMany('friends').ids(), ['1', '2'], 'initially relationship established rhs');
 
-    person3.unloadRecord();
+    await person3.unloadRecord();
 
     assert.deepEqual(
       person1Friends.map((r) => r.id),
@@ -1740,7 +1740,7 @@ module('integration/unload - Unloading Records', function (hooks) {
       'unload async removes from previous many array'
     );
 
-    person4.unloadRecord();
+    await person4.unloadRecord();
 
     assert.deepEqual(
       person1Friends.map((r) => r.id),
@@ -1799,7 +1799,7 @@ module('integration/unload - Unloading Records', function (hooks) {
     assert.strictEqual(person.favoriteBook.id, '2', 'initially relationship established lhs');
     assert.strictEqual(book.belongsTo('person').id(), '1', 'initially relationship established rhs');
 
-    book.unloadRecord();
+    await book.unloadRecord();
     await settled();
 
     assert.strictEqual(person.book, undefined, 'unloading acts as a delete for sync relationships');
@@ -2079,7 +2079,7 @@ module('integration/unload - Unloading Records', function (hooks) {
 
     assert.false(spoons.isDestroyed, 'ManyArray is not destroyed');
 
-    person.unloadRecord();
+    await person.unloadRecord();
     await settled();
 
     assert.true(spoons.isDestroyed, 'ManyArray is destroyed when 1 side is unloaded');
@@ -2158,7 +2158,7 @@ module('integration/unload - Unloading Records', function (hooks) {
       'many array is initially set up correctly'
     );
 
-    show2.unloadRecord();
+    await show2.unloadRecord();
 
     assert.deepEqual(
       shows.map((r) => r.id),
@@ -2247,7 +2247,7 @@ module('integration/unload - Unloading Records', function (hooks) {
       'many array is initially set up correctly'
     );
 
-    person.unloadRecord();
+    await person.unloadRecord();
     await settled();
 
     assert.strictEqual(store.peekRecord('person', '1'), null, 'unloaded record gone from store');

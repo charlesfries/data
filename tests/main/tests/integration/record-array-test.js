@@ -221,7 +221,7 @@ module('unit/record-array - RecordArray', function (hooks) {
     assert.strictEqual(recordArray.length, 3, 'populated length 3');
     await three.save();
     assert.strictEqual(recordArray.length, 2, 'after save persisted length 2');
-    three.unloadRecord();
+    await three.unloadRecord();
     await settled();
 
     assert.strictEqual(recordArray.length, 2, 'updated length 2');

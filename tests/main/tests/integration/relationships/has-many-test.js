@@ -335,7 +335,7 @@ module('integration/relationships/has_many - Has-Many Relationships', function (
     assert.strictEqual(contacts, user.contacts);
   });
 
-  test('hasMany + canonical vs currentState + unloadRecord', function (assert) {
+  test('hasMany + canonical vs currentState + unloadRecord', async function (assert) {
     assert.expect(6);
 
     let store = this.owner.lookup('service:store');
@@ -407,8 +407,8 @@ module('integration/relationships/has_many - Has-Many Relationships', function (
       'user should have expected contacts'
     );
 
-    store.peekRecord('user', 2).unloadRecord();
-    store.peekRecord('user', 6).unloadRecord();
+    await store.peekRecord('user', 2).unloadRecord();
+    await store.peekRecord('user', 6).unloadRecord();
 
     assert.deepEqual(
       contacts.map((c) => c.id),
